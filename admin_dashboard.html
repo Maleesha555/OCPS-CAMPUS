@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCPS Admin | Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
+<body id="admin-body">
+    <header>
+        <div class="logo-container">
+            <i class="fas fa-user-shield"></i>
+            <span class="logo-text">OCPS Admin</span>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#" onclick="logout()" class="btn-login" style="background-color: #c53030;">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+        <aside class="sidebar">
+            <ul>
+                <li><a href="#" onclick="showSection('admin-home')" id="nav-admin-home" class="active"><i
+                            class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="#" onclick="showSection('manage-students')" id="nav-manage-students"><i
+                            class="fas fa-users"></i> Manage Students</a></li>
+                <li><a href="#" onclick="showSection('manage-content')" id="nav-manage-content"><i
+                            class="fas fa-video"></i> Recordings & Tasks</a></li>
+            </ul>
+        </aside>
+
+        <section id="admin-home" class="dashboard-content">
+            <h2>Welcome, Administrator</h2>
+            <div class="features-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="feature-card">
+                    <h3>Total Students</h3>
+                    <p id="student-count" style="font-size: 2rem; font-weight: bold;">0</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Content Uploaded</h3>
+                    <p id="content-count" style="font-size: 2rem; font-weight: bold;">0</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="manage-students" class="dashboard-content hidden">
+            <h2>Manage Students</h2>
+            <div class="auth-container" style="max-width: 100%; margin: 1rem 0; padding: 1rem;">
+                <h3>Add New Student</h3>
+                <form id="addStudentForm"
+                    style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 1rem; align-items: end;">
+                    <div class="form-group" style="margin:0">
+                        <label>Name</label>
+                        <input type="text" id="new-student-name" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group" style="margin:0">
+                        <label>Email (Username)</label>
+                        <input type="email" id="new-student-email" required placeholder="john@ocps.edu">
+                    </div>
+                    <div class="form-group" style="margin:0">
+                        <label>Password</label>
+                        <input type="text" id="new-student-pass" required placeholder="password123">
+                    </div>
+                    <button type="submit" class="btn-submit" style="width: auto; padding: 0.8rem 1.5rem;"><i
+                            class="fas fa-plus"></i> Add</button>
+                </form>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="student-list-body">
+                    <!-- Loaded via JS -->
+                </tbody>
+            </table>
+        </section>
+
+        <section id="manage-content" class="dashboard-content hidden">
+            <h2>Upload Content</h2>
+            <div class="auth-container" style="max-width: 100%; margin: 1rem 0; padding: 1rem;">
+                <h3>Add Recording / Assignment</h3>
+                <form id="addContentForm"
+                    style="display: grid; grid-template-columns: 1fr 1fr 2fr auto; gap: 1rem; align-items: end;">
+                    <div class="form-group" style="margin:0">
+                        <label>Type</label>
+                        <select id="content-type">
+                            <option value="recording">Recording</option>
+                            <option value="assignment">Assignment</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="margin:0">
+                        <label>Title</label>
+                        <input type="text" id="content-title" required placeholder="Week 1: Intro to Java">
+                    </div>
+                    <div class="form-group" style="margin:0">
+                        <label>Link / Description</label>
+                        <input type="text" id="content-url" required placeholder="http://zoom.us/rec/...">
+                    </div>
+                    <button type="submit" class="btn-submit" style="width: auto; padding: 0.8rem 1.5rem;"><i
+                            class="fas fa-upload"></i> Upload</button>
+                </form>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Title</th>
+                        <th>Detail</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody id="content-list-admin">
+                    <!-- Loaded via JS -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Check Admin Auth
+        const user = checkAuth();
+        if (!user || user.role !== 'admin') {
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+
+</html>

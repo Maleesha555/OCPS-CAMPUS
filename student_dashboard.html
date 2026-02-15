@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCPS Student | Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
+<body id="student-body">
+    <header>
+        <div class="logo-container">
+            <i class="fas fa-user-graduate"></i>
+            <span class="logo-text">OCPS Student</span>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#" onclick="logout()" class="btn-login" style="background-color: #c53030;">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+        <aside class="sidebar">
+            <ul>
+                <li><a href="#" onclick="showSection('student-home')" id="nav-student-home" class="active"><i
+                            class="fas fa-home"></i> Home</a></li>
+                <li><a href="#" onclick="showSection('my-courses')" id="nav-my-courses"><i class="fas fa-book-open"></i>
+                        My Courses</a></li>
+                <li><a href="#" onclick="showSection('recordings')" id="nav-recordings"><i class="fas fa-video"></i>
+                        Recordings</a></li>
+                <li><a href="#" onclick="showSection('assignments')" id="nav-assignments"><i class="fas fa-tasks"></i>
+                        Assignments</a></li>
+            </ul>
+        </aside>
+
+        <section id="student-home" class="dashboard-content">
+            <h2>Welcome Back, <span id="student-name-display">Student</span>!</h2>
+            <div class="features-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="feature-card">
+                    <h3>New Assignments</h3>
+                    <p id="new-assignments-count" style="font-size: 2rem; color: #d9534f; font-weight: bold;">0</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Recent Recordings</h3>
+                    <p id="new-recordings-count" style="font-size: 2rem; color: #5bc0de; font-weight: bold;">0</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem;">
+                <h3>Upcoming Deadlines</h3>
+                <ul class="data-table" style="list-style: none; padding: 0;">
+                    <li style="padding: 1rem; border-bottom: 1px solid #eee;">No pending deadlines.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="my-courses" class="dashboard-content hidden">
+            <h2>My Enrolled Courses</h2>
+            <div class="features-grid">
+                <!-- Hardcoded for demo usually dynamic -->
+                <div class="feature-card" style="text-align: left;">
+                    <h3><i class="fas fa-code"></i> Java Programming 101</h3>
+                    <p>Learn the basics of object-oriented programming with Java.</p>
+                    <button class="btn-login" style="margin-top: 1rem;">Go to Course</button>
+                </div>
+                <div class="feature-card" style="text-align: left;">
+                    <h3><i class="fas fa-laptop-code"></i> Web Development</h3>
+                    <p>Master HTML, CSS, and JavaScript for modern web design.</p>
+                    <button class="btn-login" style="margin-top: 1rem;">Go to Course</button>
+                </div>
+                <div class="feature-card" style="text-align: left;">
+                    <h3><i class="fas fa-database"></i> Database Management</h3>
+                    <p>Introduction to SQL and relational database design.</p>
+                    <button class="btn-login" style="margin-top: 1rem;">Go to Course</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="recordings" class="dashboard-content hidden">
+            <h2>Class Recordings</h2>
+            <p>Access past lectures and sessions below.</p>
+            <div id="recordings-list" class="features-grid" style="grid-template-columns: 1fr;">
+                <!-- Loaded via JS -->
+                <p>No recordings available yet.</p>
+            </div>
+        </section>
+
+        <section id="assignments" class="dashboard-content hidden">
+            <h2>Assignments & Tasks</h2>
+            <p>Complete the following tasks to grade up.</p>
+            <div id="assignments-list" class="features-grid" style="grid-template-columns: 1fr;">
+                <!-- Loaded via JS -->
+                <p>No assignments available yet.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Check Student Auth
+        const user = checkAuth();
+        if (!user || user.role !== 'student') {
+            window.location.href = 'login.html';
+        }
+        document.getElementById('student-name-display').innerText = user.name;
+    </script>
+</body>
+
+</html>
