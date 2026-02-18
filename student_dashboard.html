@@ -10,10 +10,13 @@
 </head>
 
 <body id="student-body">
-    <header>
+    <header style="position: relative;">
         <div class="logo-container">
             <i class="fas fa-user-graduate"></i>
             <span class="logo-text">OCPS Student</span>
+        </div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
         </div>
         <nav>
             <ul class="nav-links">
@@ -38,7 +41,7 @@
 
         <section id="student-home" class="dashboard-content">
             <h2>Welcome Back, <span id="student-name-display">Student</span>!</h2>
-            <div class="features-grid" style="grid-template-columns: repeat(2, 1fr);">
+            <div class="features-grid">
                 <div class="feature-card">
                     <h3>New Assignments</h3>
                     <p id="new-assignments-count" style="font-size: 2rem; color: #d9534f; font-weight: bold;">0</p>
@@ -107,6 +110,13 @@
             window.location.href = 'login.html';
         }
         document.getElementById('student-name-display').innerText = user.name;
+    </script>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('.nav-links');
+            nav.classList.toggle('active');
+        }
     </script>
 </body>
 

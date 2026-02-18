@@ -1,8 +1,11 @@
 /* Global Styles */
 :root {
-    --primary-color: #001f3f; /* Navy Blue */
-    --secondary-color: #ffffff; /* White */
-    --accent-color: #0074D9; /* Lighter Blue for accents */
+    --primary-color: #001f3f;
+    /* Navy Blue */
+    --secondary-color: #ffffff;
+    /* White */
+    --accent-color: #0074D9;
+    /* Lighter Blue for accents */
     --text-color: #333333;
     --bg-light: #f4f4f4;
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -165,7 +168,8 @@ footer {
     font-weight: 500;
 }
 
-.form-group input, .form-group select {
+.form-group input,
+.form-group select {
     width: 100%;
     padding: 0.8rem;
     border: 1px solid #ddd;
@@ -189,6 +193,18 @@ footer {
     background-color: #003366;
 }
 
+/* Admin Form Grid */
+.admin-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 1rem;
+    align-items: end;
+}
+
+#addContentForm.admin-form-grid {
+    grid-template-columns: 1fr 1fr 2fr auto;
+}
+
 /* Dashboard Styles */
 .dashboard-container {
     display: grid;
@@ -198,7 +214,8 @@ footer {
 
 .sidebar {
     background: var(--secondary-color);
-    height: 100%; /* For visual layout inside container */
+    height: 100%;
+    /* For visual layout inside container */
     padding: 1rem;
     border-radius: 8px;
     box-shadow: var(--shadow);
@@ -221,7 +238,8 @@ footer {
     transition: background 0.3s;
 }
 
-.sidebar a:hover, .sidebar a.active {
+.sidebar a:hover,
+.sidebar a.active {
     background-color: var(--bg-light);
     color: var(--primary-color);
     font-weight: 600;
@@ -240,7 +258,8 @@ footer {
     margin-top: 1rem;
 }
 
-.data-table th, .data-table td {
+.data-table th,
+.data-table td {
     padding: 1rem;
     text-align: left;
     border-bottom: 1px solid #eee;
@@ -299,7 +318,83 @@ footer {
 }
 
 @media (max-width: 768px) {
+
+    /* Layout Adjustments */
     .dashboard-container {
         grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 2rem 1rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    /* Navigation - Hamburger Menu */
+    .menu-toggle {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--secondary-color);
+    }
+
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        background-color: var(--primary-color);
+        position: absolute;
+        top: 70px;
+        /* Adjust based on header height */
+        left: 0;
+        padding: 1rem 0;
+        z-index: 1000;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        text-align: center;
+        margin: 0.5rem 0;
+    }
+
+    /* Admin Forms Stacking */
+    .admin-form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem;
+    }
+
+    /* Table Responsiveness */
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .data-table {
+        min-width: 600px;
+        /* Force scroll on small screens */
+    }
+}
+
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    .features-grid {
+        grid-template-columns: 1fr !important;
+        /* Force single column */
+    }
+
+    .logo-text {
+        font-size: 1.2rem;
     }
 }

@@ -10,10 +10,13 @@
 </head>
 
 <body>
-    <header>
+    <header style="position: relative;">
         <div class="logo-container">
             <i class="fas fa-graduation-cap"></i>
             <span class="logo-text">OCPS LMS</span>
+        </div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
         </div>
         <nav>
             <ul class="nav-links">
@@ -47,7 +50,7 @@
                 <button type="submit" class="btn-submit">Login</button>
             </form>
             <p style="margin-top: 1rem; text-align: center; font-size: 0.9rem;">
-                <a href="wa.me/+94751804537">Forgot password? Contact Administration.</a>
+                Forgot password? Contact Administration.
             </p>
         </div>
     </main>
@@ -57,7 +60,13 @@
     </footer>
 
     <script src="script.js"></script>
-</body>
 
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('.nav-links');
+            nav.classList.toggle('active');
+        }
+    </script>
+</body>
 
 </html>

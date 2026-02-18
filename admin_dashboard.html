@@ -10,10 +10,13 @@
 </head>
 
 <body id="admin-body">
-    <header>
+    <header style="position: relative;">
         <div class="logo-container">
             <i class="fas fa-user-shield"></i>
             <span class="logo-text">OCPS Admin</span>
+        </div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
         </div>
         <nav>
             <ul class="nav-links">
@@ -36,7 +39,7 @@
 
         <section id="admin-home" class="dashboard-content">
             <h2>Welcome, Administrator</h2>
-            <div class="features-grid" style="grid-template-columns: repeat(2, 1fr);">
+            <div class="features-grid">
                 <div class="feature-card">
                     <h3>Total Students</h3>
                     <p id="student-count" style="font-size: 2rem; font-weight: bold;">0</p>
@@ -52,8 +55,7 @@
             <h2>Manage Students</h2>
             <div class="auth-container" style="max-width: 100%; margin: 1rem 0; padding: 1rem;">
                 <h3>Add New Student</h3>
-                <form id="addStudentForm"
-                    style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 1rem; align-items: end;">
+                <form id="addStudentForm" class="admin-form-grid">
                     <div class="form-group" style="margin:0">
                         <label>Name</label>
                         <input type="text" id="new-student-name" required placeholder="John Doe">
@@ -71,27 +73,28 @@
                 </form>
             </div>
 
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="student-list-body">
-                    <!-- Loaded via JS -->
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="student-list-body">
+                        <!-- Loaded via JS -->
+                    </tbody>
+                </table>
+            </div>
         </section>
 
         <section id="manage-content" class="dashboard-content hidden">
             <h2>Upload Content</h2>
             <div class="auth-container" style="max-width: 100%; margin: 1rem 0; padding: 1rem;">
                 <h3>Add Recording / Assignment</h3>
-                <form id="addContentForm"
-                    style="display: grid; grid-template-columns: 1fr 1fr 2fr auto; gap: 1rem; align-items: end;">
+                <form id="addContentForm" class="admin-form-grid">
                     <div class="form-group" style="margin:0">
                         <label>Type</label>
                         <select id="content-type">
@@ -112,19 +115,21 @@
                 </form>
             </div>
 
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Type</th>
-                        <th>Title</th>
-                        <th>Detail</th>
-                        <th>Remove</th>
-                    </tr>
-                </thead>
-                <tbody id="content-list-admin">
-                    <!-- Loaded via JS -->
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Title</th>
+                            <th>Detail</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody id="content-list-admin">
+                        <!-- Loaded via JS -->
+                    </tbody>
+                </table>
+            </div>
         </section>
     </main>
 
@@ -134,6 +139,12 @@
         const user = checkAuth();
         if (!user || user.role !== 'admin') {
             window.location.href = 'login.html';
+        }
+    </script>
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('.nav-links');
+            nav.classList.toggle('active');
         }
     </script>
 </body>

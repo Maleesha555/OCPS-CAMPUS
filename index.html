@@ -11,11 +11,14 @@
 </head>
 
 <body>
-    <header>
+    <header style="position: relative;">
         <div class="logo-container">
             <img src="C:\Users\malee\OneDrive\Pictures\Screenshots\Screenshot (13).png" width="50px" height="50px">
             <i class="fas fa-graduation-cap text-white"></i>
             <span class="logo-text">OCPS LMS</span>
+        </div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
         </div>
         <nav>
             <ul class="nav-links">
@@ -58,6 +61,13 @@
     <footer>
         <p>&copy; 2026 Oxford College of Professional Studies. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('.nav-links');
+            nav.classList.toggle('active');
+        }
+    </script>
 </body>
 
 </html>
