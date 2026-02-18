@@ -107,7 +107,7 @@
         // Check Student Auth
         const user = checkAuth();
         if (!user || user.role !== 'student') {
-            window.location.href = 'login.html';
+            window.location.href = 'student_login.html';
         }
         document.getElementById('student-name-display').innerText = user.name;
     </script>

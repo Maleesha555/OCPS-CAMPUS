@@ -48,11 +48,11 @@ function showSection(sectionId) {
 /* -------------------
    Login Logic
 ------------------- */
-const loginForm = document.getElementById('loginForm');
-if (loginForm) {
-    loginForm.addEventListener('submit', (e) => {
+const adminLoginForm = document.getElementById('adminLoginForm');
+if (adminLoginForm) {
+    adminLoginForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const role = document.getElementById('role').value;
+        const role = 'admin';
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         const alertBox = document.getElementById('alert-box');
@@ -63,12 +63,35 @@ if (loginForm) {
         if (user) {
             localStorage.setItem('loggedInUser', JSON.stringify(user));
             alertBox.classList.add('hidden');
-            if (role === 'admin') window.location.href = 'admin_dashboard.html';
-            else window.location.href = 'student_dashboard.html';
+            window.location.href = 'admin_dashboard.html';
         } else {
-            alertBox.innerText = 'Invalid credentials or role selected.';
+            alertBox.innerText = 'Invalid admin credentials.';
             alertBox.classList.remove('hidden');
-            alertBox.classList.add('alert-error'); // Ensure error style is applied
+            alertBox.classList.add('alert-error');
+        }
+    });
+}
+
+const studentLoginForm = document.getElementById('studentLoginForm');
+if (studentLoginForm) {
+    studentLoginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const role = 'student';
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const alertBox = document.getElementById('alert-box');
+
+        const users = JSON.parse(localStorage.getItem('users'));
+        const user = users.find(u => u.email === email && u.password === password && u.role === role);
+
+        if (user) {
+            localStorage.setItem('loggedInUser', JSON.stringify(user));
+            alertBox.classList.add('hidden');
+            window.location.href = 'student_dashboard.html';
+        } else {
+            alertBox.innerText = 'Invalid student credentials.';
+            alertBox.classList.remove('hidden');
+            alertBox.classList.add('alert-error');
         }
     });
 }
